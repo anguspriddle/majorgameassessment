@@ -12,7 +12,17 @@ public class PlayerMovement : MonoBehaviour
     private float gravityModifier = 1f;
     public float jumpAmount = 0;
     private Rigidbody2D playerRb;
-
+    private Keycode latestkey;
+    
+    // Animations and Animation States
+    Animator animator;
+    string currentState;
+    const string PLAYER_IDLELEFT = "idleLEFT";
+    const string PLAYER_IDLERIGHT = "idleRIGHT";
+    const string PLAYER_RUNLEFT = "runLEFT";
+    const string PLAYER_RUNRIGHT = "runRIGHT";
+    const string PLAYER_JUMPLEFT = "jumpLEFT";
+    const string PLAYER_JUMPRIGHT = "jumpRIGHT";
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +34,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount < 2) 
+        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount < 2 && latestkey) 
         {
             playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumpAmount += 1;
             onGround = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount < 2 && latestkey == KeyCode.A or latestkey == KeyCode.LeftArrow) 
+        {
+            playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            jumpAmount += 1;
+            onGround = false;
+        }
+
 
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * PlayerSpeed * Time.deltaTime);
