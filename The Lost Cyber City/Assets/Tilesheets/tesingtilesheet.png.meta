@@ -139,7 +139,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3c7925a175f9e34f901ba6e9e63a15b
+      spriteID: e3b9d93791d2ad0409fb07192a256368
       internalID: 628298876
       vertices: []
       indices: 
@@ -147,6 +147,27 @@ TextureImporter:
       weights: []
     - serializedVersion: 2
       name: tesingtilesheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 768
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb078922d7ee1d44daed0e28deb0cc74
+      internalID: 506302075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tesingtilesheet_3
       rect:
         serializedVersion: 2
         x: 0
@@ -160,8 +181,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a290094ea72bf2345b32dc3929ed1e5d
-      internalID: 506302075
+      spriteID: 6f75000339b097b48ab64eacf413b536
+      internalID: -1429103262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tesingtilesheet_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 736
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ccb438a101ae9b47989f7cc13b01256
+      internalID: -1388485601
       vertices: []
       indices: 
       edges: []
@@ -177,8 +219,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      tesingtilesheet_3: -1429103262
       tesingtilesheet_2: 506302075
       tesingtilesheet_0: 2095963996
+      tesingtilesheet_4: -1388485601
       tesingtilesheet_1: 628298876
   spritePackingTag: 
   pSDRemoveMatte: 0
