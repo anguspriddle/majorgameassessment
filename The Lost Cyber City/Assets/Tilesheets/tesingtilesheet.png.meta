@@ -170,8 +170,8 @@ TextureImporter:
       name: tesingtilesheet_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 736
+        x: 96
+        y: 768
         width: 32
         height: 32
       alignment: 0
@@ -191,7 +191,7 @@ TextureImporter:
       name: tesingtilesheet_4
       rect:
         serializedVersion: 2
-        x: 32
+        x: 0
         y: 736
         width: 32
         height: 32
@@ -204,6 +204,27 @@ TextureImporter:
       bones: []
       spriteID: 4ccb438a101ae9b47989f7cc13b01256
       internalID: -1388485601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tesingtilesheet_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 736
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc21cd0a685694b468f5d81de0131449
+      internalID: -500419089
       vertices: []
       indices: 
       edges: []
@@ -223,6 +244,7 @@ TextureImporter:
       tesingtilesheet_2: 506302075
       tesingtilesheet_0: 2095963996
       tesingtilesheet_4: -1388485601
+      tesingtilesheet_5: -500419089
       tesingtilesheet_1: 628298876
   spritePackingTag: 
   pSDRemoveMatte: 0
