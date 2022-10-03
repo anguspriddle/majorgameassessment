@@ -49,6 +49,19 @@ public class PlayerMovement : MonoBehaviour
                 ChangeAnimationState(PLAYER_IDLELEFT);
             }
         }
+
+        if (horizontalInput > 0 && onGround == false)
+        {
+            ChangeAnimationState(PLAYER_JUMPRIGHT);
+            Facing_Right = true;
+            Facing_Left = false;
+        }
+        if (horizontalInput < 0 && onGround == false)
+        {
+            ChangeAnimationState(PLAYER_JUMPLEFT);
+            Facing_Right = false;
+            Facing_Left = true;
+        }
         if (horizontalInput > 0 && onGround == true)
         {
             ChangeAnimationState(PLAYER_RUNRIGHT);
