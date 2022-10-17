@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,19 +21,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TimerOn)
-        {
-            if (TimeLeft > 0)
-            {
-                TimeLeft -= Time.deltaTime;
-            }
-            else
-            {
-                TimeLeft = 0;
-                TimerOn = false;
-            }
 
-            currentTime -= Time.deltaTime;
+            currentTime = currentTime - Time.deltaTime;
 
             float minutes = Mathf.FloorToInt((currentTime / 60));
             float seconds = Mathf.FloorToInt((currentTime % 60));
@@ -40,4 +30,3 @@ public class GameManager : MonoBehaviour
         }
     }
 
-}

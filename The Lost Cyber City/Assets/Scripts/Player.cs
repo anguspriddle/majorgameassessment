@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     // Variables
     public float PlayerSpeed = 5.0f;
@@ -14,7 +14,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRb;
     private bool Facing_Left;
     private bool Facing_Right;
-    
+    public GameObject HeartContainer1;
+    public GameObject HeartContainer2;
+    public GameObject HeartContainer3;
+    public int lives = 3;
+    public GameObject gameManager;
     // Animations and Animation States
     Animator animator;
     string currentState;
@@ -31,11 +35,31 @@ public class PlayerMovement : MonoBehaviour
         Physics.gravity *= gravityModifier;
         animator = gameObject.GetComponent<Animator>();
         ChangeAnimationState(PLAYER_IDLELEFT);
+        HeartContainer1.SetActive(true);
+        HeartContainer2.SetActive(true);
+        HeartContainer3.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            lives -= 1;
+            
+        }
+        if (lives == 2)
+        {
+            HeartContainer1.SetActive(false);
+        }
+        if (lives == 1)
+        {
+            HeartContainer2.SetActive(false);
+        }
+        if (lives == 0)
+        {
+            HeartContainer3.SetActive(false);
+        }
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * PlayerSpeed * Time.deltaTime);
         if (horizontalInput == 0 && onGround == true)
@@ -96,8 +120,16 @@ public class PlayerMovement : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.gameObject.name == "Robot Enemy")
+        {
+            lives -= 1;
+        }
+        else
+        {
             jumpAmount = 0;
             onGround = true;
+        }
+          
     }
 
     void ChangeAnimationState(string newState)
@@ -108,4 +140,6 @@ public class PlayerMovement : MonoBehaviour
 
         currentState = newState;
     }
+
+    
 }
