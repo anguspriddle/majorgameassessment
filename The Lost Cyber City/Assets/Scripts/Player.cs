@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     public GameObject HeartContainer3;
     public int lives = 3;
     public GameObject gameManager;
+    private float timeStamp;
+    private float coolDownPeriodInSeconds = 2.5f;
     // Animations and Animation States
     Animator animator;
     string currentState;
@@ -29,6 +31,7 @@ public class Player : MonoBehaviour
     const string PLAYER_RUNRIGHT = "runRIGHT";
     const string PLAYER_JUMPLEFT = "jumpLEFT";
     const string PLAYER_JUMPRIGHT = "jumpRIGHT";
+    const string PLAYER_ATTACKRIGHT = "attackRIGHT";
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeStamp = Time.time + coolDownPeriodInSeconds;
+        Debug.Log("text " + timeStamp);
         if (Input.GetKeyUp(KeyCode.K))
         {
             lives -= 1;
@@ -65,6 +70,12 @@ public class Player : MonoBehaviour
         {
             deathState();
         }
+        if (Input.GetKey(KeyCode.V) && (timeStamp <= Time.time))
+        {
+            ChangeAnimationState(PLAYER_ATTACKRIGHT);
+            
+        }
+
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * PlayerSpeed * Time.deltaTime);
         if (horizontalInput == 0 && onGround == true)
