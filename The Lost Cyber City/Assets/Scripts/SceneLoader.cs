@@ -9,6 +9,14 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("MainGame");
     }
+    public void LoadSceneMenu()
+    {
+        SceneManager.LoadScene("mainMenu");
+    }
+    public void LoadSceneCredits()
+    {
+        SceneManager.LoadScene("credits");
+    }
     // Start is called before the first frame update
     void Start()
     {

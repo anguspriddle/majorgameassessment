@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -59,6 +60,10 @@ public class Player : MonoBehaviour
         if (lives == 0)
         {
             HeartContainer3.SetActive(false);
+        }
+        if (lives == 0)
+        {
+            deathState();
         }
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * PlayerSpeed * Time.deltaTime);
@@ -141,5 +146,9 @@ public class Player : MonoBehaviour
         currentState = newState;
     }
 
+    void deathState()
+    {
+        SceneManager.LoadScene("deathScene"); 
+    }
     
 }
