@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public GameObject HeartContainer3;
     public int lives = 3;
     public GameObject gameManager;
-    private float timeStamp;
+    private float timeStamp = 0f;
     private float coolDownPeriodInSeconds = 2.5f;
     // Animations and Animation States
     Animator animator;
