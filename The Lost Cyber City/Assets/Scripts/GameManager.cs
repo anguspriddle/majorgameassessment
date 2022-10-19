@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Text healthText;
     public float TimeLeft;
     public bool TimerOn = false;
+    public int score;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,8 @@ public class GameManager : MonoBehaviour
 
             float minutes = Mathf.FloorToInt((TimeLeft / 60));
             float seconds = Mathf.FloorToInt((TimeLeft % 60));
-            timeText.text = string.Format("Time: {0:00} : {1:00}", minutes, seconds);
+        // timeText.text = string.Format("Time: {0:00} : {1:00}", minutes, seconds);
+                timeText.text = "Score: " + score;
         }
     }
 

@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     private float gravityModifier = 1f;
     public float jumpAmount = 0;
     private Rigidbody2D playerRb;
-    private bool Facing_Left;
-    private bool Facing_Right;
+    public bool Facing_Left;
+    public bool Facing_Right;
     public GameObject HeartContainer1;
     public GameObject HeartContainer2;
     public GameObject HeartContainer3;
@@ -71,12 +71,19 @@ public class Player : MonoBehaviour
         {
             deathState();
         }
-        if (Input.GetKeyUp(KeyCode.V) && (cooldown == false))
+        if (Input.GetKey(KeyCode.V))
         {
-            ChangeAnimationState(PLAYER_ATTACKRIGHT);
-            timeStamp = 0;
-            cooldown = true;
-            
+            if(cooldown == false)
+            {
+                if ((Facing_Right == true) && horizontalInput == 0)
+                {
+                    animator.Play("attackRIGHT");
+                    ChangeAnimationState(PLAYER_IDLELEFT);
+                    timeStamp = 0;
+                    cooldown = true;
+                    
+                }
+            }
         }
 
         horizontalInput = Input.GetAxis("Horizontal");
@@ -84,7 +91,7 @@ public class Player : MonoBehaviour
         if (cooldown == true)
         {
             timeStamp += Time.deltaTime;
-            if (timeStamp == coolDownPeriodInSeconds){
+            if (timeStamp >= coolDownPeriodInSeconds){
                 cooldown = false;
             }
         }
