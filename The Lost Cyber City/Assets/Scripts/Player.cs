@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     // Variables
-    public float PlayerSpeed = 5.0f;
+    public float PlayerSpeed = 1.0f;
     public float horizontalInput;
     public bool onGround = true;
     private float jumpForce = 4.0f;
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
             Facing_Right = false;
             Facing_Left = true;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount < 2 && Facing_Left == true) 
+        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount < 3 && Facing_Left == true) 
         {
             ChangeAnimationState(PLAYER_JUMPLEFT);
             playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -139,7 +139,7 @@ public class Player : MonoBehaviour
             onGround = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount < 2 && Facing_Right == true)
+        if (Input.GetKeyDown(KeyCode.Space) && jumpAmount < 3 && Facing_Right == true)
         {
             ChangeAnimationState(PLAYER_JUMPRIGHT);
             playerRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -156,6 +156,10 @@ public class Player : MonoBehaviour
         if(collision.gameObject.name == "Robot Enemy")
         {
             lives -= 1;
+        }
+        if(collision.gameObject.name == "Attack")
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
         else
         {

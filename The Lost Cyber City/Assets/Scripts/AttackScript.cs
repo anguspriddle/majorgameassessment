@@ -14,12 +14,14 @@ public class AttackScript : MonoBehaviour
     public GameObject player;
     private Player Player_Script;
     public float timeAnim;
+    public bool attack;
     public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         timeAnim = 0;
         cooldown = false;
+        attack = false;
         Player_Script = player.GetComponent<Player>();
         AttackRight.SetActive(false);
         AttackLeft.SetActive(false);
@@ -29,7 +31,7 @@ public class AttackScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.transform.position;
+        transform.position = player.transform.position + new Vector3(0, 0, 0);
         if (Input.GetKeyUp(KeyCode.V))
         {
             cooldown = true;
@@ -39,6 +41,7 @@ public class AttackScript : MonoBehaviour
                 attackLeft.Play("attackLeft", 0);
                 timeStamp = 0;
                 cooldown = true;
+                attack = false;
             }
             if (Player_Script.Facing_Left == true)
             {
@@ -46,6 +49,7 @@ public class AttackScript : MonoBehaviour
                 attackRight.Play("attackRight", 0);
                 timeStamp = 0;
                 cooldown = true;
+                attack = false;
             }
         }
         if (cooldown == true)
@@ -62,9 +66,9 @@ public class AttackScript : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Robot Enemy")
+        if (attack == true && collision.gameObject.name == "Robot Enemy")
         {
-            gameManager.lives += 1;
+            gameManager.score += 1;
         }
     }
 

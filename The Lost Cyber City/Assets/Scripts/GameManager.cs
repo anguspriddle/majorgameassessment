@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         TimerOn = true;
-        TimeLeft = 420;
+        TimeLeft = 270;
     }
 
     // Update is called once per frame
@@ -27,8 +27,7 @@ public class GameManager : MonoBehaviour
 
             float minutes = Mathf.FloorToInt((TimeLeft / 60));
             float seconds = Mathf.FloorToInt((TimeLeft % 60));
-        // timeText.text = string.Format("Time: {0:00} : {1:00}", minutes, seconds);
-                timeText.text = "Score: " + score;
+            timeText.text = string.Format("Time: {0:00} : {1:00}", minutes, seconds);
         }
     }
 
