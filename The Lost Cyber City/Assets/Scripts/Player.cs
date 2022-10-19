@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public GameObject gameManager;
     private float timeStamp = 0f;
     private float coolDownPeriodInSeconds = 2.5f;
+    public bool cooldown;
     // Animations and Animation States
     Animator animator;
     string currentState;
@@ -42,12 +43,12 @@ public class Player : MonoBehaviour
         HeartContainer1.SetActive(true);
         HeartContainer2.SetActive(true);
         HeartContainer3.SetActive(true);
+        cooldown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeStamp = Time.time + coolDownPeriodInSeconds;
         Debug.Log("text " + timeStamp);
         if (Input.GetKeyUp(KeyCode.K))
         {
@@ -70,14 +71,23 @@ public class Player : MonoBehaviour
         {
             deathState();
         }
-        if (Input.GetKey(KeyCode.V) && (timeStamp <= Time.time))
+        if (Input.GetKeyUp(KeyCode.V) && (cooldown == false))
         {
             ChangeAnimationState(PLAYER_ATTACKRIGHT);
+            timeStamp = 0;
+            cooldown = true;
             
         }
 
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * PlayerSpeed * Time.deltaTime);
+        if (cooldown == true)
+        {
+            timeStamp += Time.deltaTime;
+            if (timeStamp == coolDownPeriodInSeconds){
+                cooldown = false;
+            }
+        }
         if (horizontalInput == 0 && onGround == true)
         {
             if (Facing_Left == true)
