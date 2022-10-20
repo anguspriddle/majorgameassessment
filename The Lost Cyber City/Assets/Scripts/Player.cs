@@ -157,11 +157,7 @@ public class Player : MonoBehaviour
         {
             lives -= 1;
         }
-        if(collision.gameObject.name == "Coin")
-        {
-            jumpAmount = jumpAmount;
-        }
-        else
+        if(collision.gameObject.name != "Robot Enemy" && collision.gameObject.name != "Coin")
         {
             jumpAmount = 0;
             onGround = true;
