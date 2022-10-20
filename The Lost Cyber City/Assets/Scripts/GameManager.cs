@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public Text timeText;
     public Text healthText;
+    public GameObject Player;
     public Text scoreText;
     public float TimeLeft;
     public bool TimerOn = false;
@@ -29,7 +30,8 @@ public class GameManager : MonoBehaviour
             float minutes = Mathf.FloorToInt((TimeLeft / 60));
             float seconds = Mathf.FloorToInt((TimeLeft % 60));
             timeText.text = string.Format("Time: {0:00} : {1:00}", minutes, seconds);
-        scoreText.text = "Score: " + score;
+            scoreText.text = "Score: " + score;
+        healthText.text = lives + "x";
        }
     }
 

@@ -15,11 +15,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D playerRb;
     public bool Facing_Left;
     public bool Facing_Right;
-    public GameObject HeartContainer1;
-    public GameObject HeartContainer2;
-    public GameObject HeartContainer3;
-    public int lives = 3;
-    public GameObject gameManager;
+    public GameManager gameManager;
     private float timeStamp = 0f;
     private float coolDownPeriodInSeconds = 2.5f;
     public bool cooldown;
@@ -40,51 +36,17 @@ public class Player : MonoBehaviour
         Physics.gravity *= gravityModifier;
         animator = gameObject.GetComponent<Animator>();
         ChangeAnimationState(PLAYER_IDLELEFT);
-        HeartContainer1.SetActive(true);
-        HeartContainer2.SetActive(true);
-        HeartContainer3.SetActive(true);
         cooldown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("text " + timeStamp);
-        if (Input.GetKeyUp(KeyCode.K))
-        {
-            lives -= 1;
-            
-        }
-        if (lives == 2)
-        {
-            HeartContainer1.SetActive(false);
-        }
-        if (lives == 1)
-        {
-            HeartContainer2.SetActive(false);
-        }
-        if (lives == 0)
-        {
-            HeartContainer3.SetActive(false);
-        }
-        if (lives == 0)
+        if (gameManager.lives == 0)
         {
             deathState();
         }
-        if (Input.GetKey(KeyCode.V))
-        {
-            if(cooldown == false)
-            {
-                if ((Facing_Right == true) && horizontalInput == 0)
-                {
-                    animator.Play("attackRIGHT");
-                    ChangeAnimationState(PLAYER_IDLELEFT);
-                    timeStamp = 0;
-                    cooldown = true;
-                    
-                }
-            }
-        }
+        
 
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * PlayerSpeed * Time.deltaTime);
@@ -155,9 +117,13 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.name == "Robot Enemy")
         {
-            lives -= 1;
+            gameManager.lives -= 1;
         }
-        if(collision.gameObject.name != "Robot Enemy" && collision.gameObject.name != "Coin")
+        if(collision.gameObject.name == "HeartContainer"){
+                gameManager.lives += 1;
+                Destroy(collision.gameObject);
+        }
+        if(collision.gameObject.name != "Robot Enemy" && collision.gameObject.name != "Coin" && collision.gameObject.name != "HeartContainer")
         {
             jumpAmount = 0;
             onGround = true;
