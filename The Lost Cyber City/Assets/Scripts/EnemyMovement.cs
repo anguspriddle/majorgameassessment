@@ -16,23 +16,14 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if (faceRight == true)
-        {
-            transform.Translate(Vector3.right * enemySpeed * Time.deltaTime);
-        }
-
-        if (faceRight == false)
-        {
-            transform.Translate(Vector3.left * enemySpeed * Time.deltaTime);
-        }
-
+        transform.Translate(Vector3.right * enemySpeed * Time.deltaTime);
         if (transform.position.x >= Waypoint1.transform.position.x) 
         {
-            faceRight = false;
+            transform.Rotate(0, 180, 0);
         }
         if (transform.position.x <= Waypoint2.transform.position.x) 
         {
-            faceRight = true;
+            transform.Rotate(0, 180, 0);
         }
 
     }

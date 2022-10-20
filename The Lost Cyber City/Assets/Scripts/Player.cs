@@ -157,9 +157,9 @@ public class Player : MonoBehaviour
         {
             lives -= 1;
         }
-        if(collision.gameObject.name == "Attack")
+        if(collision.gameObject.name == "Coin")
         {
-            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            jumpAmount = jumpAmount;
         }
         else
         {
