@@ -31,7 +31,11 @@ public class GameManager : MonoBehaviour
             float seconds = Mathf.FloorToInt((TimeLeft % 60));
             timeText.text = string.Format("Time: {0:00} : {1:00}", minutes, seconds);
             scoreText.text = "Score: " + score;
-        healthText.text = lives + "x";
+            healthText.text = lives + "x";
+        if(TimeLeft <= 0)
+        {
+            SceneManager.LoadScene("deathScene");
+        }
        }
     }
 

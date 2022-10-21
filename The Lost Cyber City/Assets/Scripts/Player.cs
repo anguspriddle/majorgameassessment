@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     private float timeStamp = 0f;
     private float coolDownPeriodInSeconds = 2.5f;
     public bool cooldown;
+    public GameObject SpeedWarning;
+    public int maxSpeed = 11;
     // Animations and Animation States
     Animator animator;
     string currentState;
@@ -46,7 +48,14 @@ public class Player : MonoBehaviour
         {
             deathState();
         }
-        
+        if(PlayerSpeed == maxSpeed)
+        {
+            SpeedWarning.SetActive(true);
+        }
+        if(PlayerSpeed < 11)
+        {
+            SpeedWarning.SetActive(false);
+        }
 
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * PlayerSpeed * Time.deltaTime);
@@ -123,7 +132,37 @@ public class Player : MonoBehaviour
                 gameManager.lives += 1;
                 Destroy(collision.gameObject);
         }
-        if(collision.gameObject.name != "Robot Enemy" && collision.gameObject.name != "Coin" && collision.gameObject.name != "HeartContainer")
+        if(collision.gameObject.name == "SpeedBoost")
+        {
+            if(PlayerSpeed < maxSpeed)
+            {
+                PlayerSpeed += 1;
+                Destroy(collision.gameObject);
+            }
+            if(PlayerSpeed >= maxSpeed)
+            {
+                Destroy(collision.gameObject);
+            }
+            
+        }
+        if(collision.gameObject.name == "SpeedLower")
+        {
+            if(PlayerSpeed > 2)
+            {
+                PlayerSpeed -= 1;
+                Destroy(collision.gameObject);
+            }
+            if(PlayerSpeed <= 1)
+            {
+                Destroy(collision.gameObject);
+            }
+            
+        }
+        if(collision.gameObject.name == "lever")
+        {
+            SceneManager.LoadScene("gameWIN");
+        }
+        if(collision.gameObject.name != "Robot Enemy" && collision.gameObject.name != "Coin" && collision.gameObject.name != "HeartContainer" && collision.gameObject.name !="SpeedBoost" && collision.gameObject.name != "SpeedLower")
         {
             jumpAmount = 0;
             onGround = true;
